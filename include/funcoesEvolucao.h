@@ -1,6 +1,6 @@
+#include "individuo.h"
 #define TamPop 10
-#define maxx 2000
 
-void initpop(float *ind);
-void avalia(float *fit, float *ind);
-void elitismo(float *fit, float *ind);
+void initpop(ind *ind);
+void avalia(float *fit, ind *ind);
+void elitismo(float *fit, ind *ind);
