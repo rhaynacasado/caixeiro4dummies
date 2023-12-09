@@ -27,6 +27,8 @@
 
 ## 👥 Project Owners
 
+- Ana Beatriz Araujo Ferreira
+  
 - Marcelo Eduardo Reginato
 
 - Rhayna Christiani Vasconcelos Marques Casado
