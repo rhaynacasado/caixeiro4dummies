@@ -8,8 +8,8 @@
 NUSP: 13676965*/
 
 int main(){
-    ind individuos[TamPop+1];
-    float fitness[TamPop+1];
+    ind individuos[TamPop];
+    float fitness[TamPop];
     srand(time(NULL));
     float y = 0;
 
@@ -26,21 +26,19 @@ int main(){
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
     };
 
-    individuos[0].avaliacao = 0;
-    individuos[0].posi = LINHAS - 2;
-    individuos[0].posj = COLUNAS - 2;
+    // individuos[0].avaliacao = 0;
+    // individuos[0].posi = LINHAS - 2;
+    // individuos[0].posj = COLUNAS - 2;
 
-    labirinto[individuos[0].posi][individuos[0].posj] = 3;
+    // labirinto[individuos[0].posi][individuos[0].posj] = 3;
 
-    moveIndividuo(labirinto, individuos[0], &y);
-    printLabirinto(labirinto);
+    // moveIndividuo(labirinto, individuos[0], &y);
+    // printLabirinto(labirinto);
 
 
-    initpop(individuos);
-    for(int i = 0; i < 10; i++){
-        avalia(fitness, individuos);
-        elitismo(fitness, individuos);
-    }
+    initpop(individuos, labirinto);
+    avalia(fitness, individuos, labirinto);
+    elitismo(fitness, individuos);
 
     return 0;
 }

@@ -1,7 +1,7 @@
 #include "individuo.h"
-#define TamPop 10
+#define TamPop 2
 
-void initpop(ind *ind);
-void avalia(float *fit, ind *ind);
+void initpop(ind *ind, int labirinto[LINHAS][COLUNAS]);
+void avalia(float *fit, ind *ind, int labirinto[LINHAS][COLUNAS]);
 void elitismo(float *fit, ind *ind);
-void movimentaIndividuo(ind ind, float *y);
+void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *y);

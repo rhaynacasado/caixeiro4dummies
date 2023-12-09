@@ -1,9 +1,9 @@
 #include "individuo.h"
 
 void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *pontos){
-    int n = 20;
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < 20; i++){
         printLabirinto(labirinto);
+        printf("\nPONTOS: %f\n", *pontos);
         int direcao = rand() % 4;
 
         if(labirinto[ind.posi][ind.posj] != 1 || labirinto[ind.posi][ind.posj] != 2){
@@ -18,7 +18,6 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *pontos){
                 else{
                     printf("\nburrooou pra direita\n");
                     *pontos -= 5; 
-                    n++;
                 }
             }
             else if(direcao == 1){
@@ -32,7 +31,6 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *pontos){
                 else{
                     printf("\nburrooou pra esquerda\n");
                     *pontos -= 5; 
-                    n++;
                 }
             }
             else if(direcao == 2){
@@ -46,7 +44,6 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *pontos){
                 else{
                     printf("\nburrooou pra cima\n");
                     *pontos -= 5; 
-                    n++;
                 }
             }
             else if(direcao == 3){
@@ -60,11 +57,9 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *pontos){
                 else{
                     printf("\nburrooou pra baixo\n");
                     *pontos -= 5; 
-                    n++;
                 }
             }
         }
-        else 
-            n++;
     }
+    labirinto[ind.posi][ind.posj] = 0;
 }
