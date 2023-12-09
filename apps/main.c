@@ -1,11 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "funcoesEvolucao.h"
 
 /*MARCELO EDUARDO REGINATO
 NUSP: 13676965*/
 
 int main(){
-    printa();
+    float individuos[TamPop+1];
+    float fitness[TamPop+1];
+    srand(time(NULL));
+
+    initpop(individuos);
+    for(int i = 0; i < 10; i++){
+        avalia(fitness, individuos);
+        elitismo(fitness, individuos);
+    }    
     return 0;
 }
