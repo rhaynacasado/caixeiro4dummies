@@ -5,8 +5,8 @@
 
 typedef struct{
     float avaliacao;
-    int posei;
-    int posej;
+    int posi;
+    int posj;
 }ind;
 
 void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *pontos);

@@ -7,20 +7,41 @@ int gen = 0;
 
 void initpop(ind *ind){
     for(int i = 1; i<=TamPop; i++){
-        ind[i].avaliacao = (float)(rand() % maxx); // preenche o vetor com a populacao
+        ind[i].avaliacao = 0; // preenche o vetor com a populacao
         //printf("ind[%d] = %f\n", i, ind[i]); //mostrar individuos gerados
+    }
+}
+
+void movimentaIndividuo(ind ind, float *y){
+    int movimento;
+    movimento = (int)(rand() % 4);
+    for(int i = 0; i < 10; i++){
+        if(movimento == 0){
+            ind.posi = ind.posi++;
+            *y = *y + 10;
+        }else if(movimento == 1){
+            ind.posj = ind.posj++;
+            *y = *y + 10;
+        }else if(movimento == 2){
+            ind.posj = ind.posj++;
+            *y = *y - 10;
+        }else if(movimento == 3){
+            ind.posj = ind.posj--;
+            *y = *y - 10;
+        }
     }
 }
 
 void avalia(float *fit, ind *ind){
     float x;
+    float y;
     printf("Generacao: %d\n", gen); // printa em qual geracao esta
     gen++;
     for(int i = 1; i<=TamPop; i++){
         x = ind[i].avaliacao;
-        float y = x;
-        if(x>500)
-            y = 1000 - x;
+        y = x;
+        if(x == 0)
+            movimentaIndividuo(ind[i], &y);
         fit[i] = y;
         printf("\tAvaliacao %d (%f) = %f\n", i, ind[i].avaliacao, fit[i]); // essa funcao foi feita para limitar em que ponto se quer chegar a populacao, limitar sua avaliacao do sistema;
     }
