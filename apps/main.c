@@ -30,6 +30,8 @@ int main(){
     individuos[0].posi = LINHAS - 2;
     individuos[0].posj = COLUNAS - 2;
 
+    labirinto[individuos[0].posi][individuos[0].posj] = 3;
+
     moveIndividuo(labirinto, individuos[0], &y);
     printLabirinto(labirinto);
 

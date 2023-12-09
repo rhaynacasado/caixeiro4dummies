@@ -1,57 +1,64 @@
 #include "individuo.h"
 
 void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *pontos){
-    int n = 10;
+    int n = 20;
     for(int i = 0; i < n; i++){
         printLabirinto(labirinto);
         int direcao = rand() % 4;
-        printf("direcao: %d\n", direcao);
 
         if(labirinto[ind.posi][ind.posj] != 1 || labirinto[ind.posi][ind.posj] != 2){
             if(direcao == 0){
-                if(ind.posj < COLUNAS - 1){
+                if(ind.posj < COLUNAS - 2){
+                    printf("\nandou pra direita\n");
                     labirinto[ind.posi][ind.posj] = 0;
                     ind.posj++;
                     labirinto[ind.posi][ind.posj] = 3;
                     *pontos -= 10;
                 }
                 else{
+                    printf("\nburrooou pra direita\n");
                     *pontos -= 5; 
                     n++;
                 }
             }
             else if(direcao == 1){
                 if(ind.posj > 1){
+                    printf("\nandou pra esquerda\n");
                     labirinto[ind.posi][ind.posj] = 0;
                     ind.posj--;
                     labirinto[ind.posi][ind.posj] = 3;
                     *pontos += 10;
                 }
                 else{
+                    printf("\nburrooou pra esquerda\n");
                     *pontos -= 5; 
                     n++;
                 }
             }
             else if(direcao == 2){
                 if(ind.posi > 1){
+                    printf("\nandou pra cima\n");
                     labirinto[ind.posi][ind.posj] = 0;
                     ind.posi--;
                     labirinto[ind.posi][ind.posj] = 3;
                     *pontos += 10;
                 }
                 else{
+                    printf("\nburrooou pra cima\n");
                     *pontos -= 5; 
                     n++;
                 }
             }
             else if(direcao == 3){
                 if(ind.posj < LINHAS - 1){
+                    printf("\nandou pra baixo\n");
                     labirinto[ind.posi][ind.posj] = 0;
                     ind.posi++;
                     labirinto[ind.posi][ind.posj] = 3;
                     *pontos -= 10;
                 }
                 else{
+                    printf("\nburrooou pra baixo\n");
                     *pontos -= 5; 
                     n++;
                 }
