@@ -4,3 +4,4 @@
 void initpop(ind *ind);
 void avalia(float *fit, ind *ind);
 void elitismo(float *fit, ind *ind);
+void movimentaIndividuo(ind ind, float *y);

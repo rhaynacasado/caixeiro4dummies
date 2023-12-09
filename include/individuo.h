@@ -3,6 +3,6 @@
 
 typedef struct{
     float avaliacao;
-    int i;
-    int j;
+    int posi;
+    int posj;
 }ind;
