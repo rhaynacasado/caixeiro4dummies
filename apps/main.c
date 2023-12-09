@@ -8,7 +8,7 @@
 NUSP: 13676965*/
 
 int main(){
-    float individuos[TamPop+1];
+    ind individuos[TamPop+1];
     float fitness[TamPop+1];
     srand(time(NULL));
 
@@ -31,5 +31,6 @@ int main(){
         avalia(fitness, individuos);
         elitismo(fitness, individuos);
     }
+    
     return 0;
 }
