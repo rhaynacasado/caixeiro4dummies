@@ -7,12 +7,12 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *pontos){
         int direcao = rand() % 4;
         printf("direcao: %d\n", direcao);
 
-        if(labirinto[ind.posei][ind.posej] != 1 || labirinto[ind.posei][ind.posej] != 2){
+        if(labirinto[ind.posi][ind.posj] != 1 || labirinto[ind.posi][ind.posj] != 2){
             if(direcao == 0){
-                if(ind.posej < COLUNAS){
-                    labirinto[ind.posei][ind.posej] = 0;
-                    ind.posej++;
-                    labirinto[ind.posei][ind.posej] = 3;
+                if(ind.posj < COLUNAS - 1){
+                    labirinto[ind.posi][ind.posj] = 0;
+                    ind.posj++;
+                    labirinto[ind.posi][ind.posj] = 3;
                     *pontos -= 10;
                 }
                 else{
@@ -21,10 +21,10 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *pontos){
                 }
             }
             else if(direcao == 1){
-                if(ind.posej > 0){
-                    labirinto[ind.posei][ind.posej] = 0;
-                    ind.posej--;
-                    labirinto[ind.posei][ind.posej] = 3;
+                if(ind.posj > 1){
+                    labirinto[ind.posi][ind.posj] = 0;
+                    ind.posj--;
+                    labirinto[ind.posi][ind.posj] = 3;
                     *pontos += 10;
                 }
                 else{
@@ -33,10 +33,10 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *pontos){
                 }
             }
             else if(direcao == 2){
-                if(ind.posei > 0){
-                    labirinto[ind.posei][ind.posej] = 0;
-                    ind.posei--;
-                    labirinto[ind.posei][ind.posej] = 3;
+                if(ind.posi > 1){
+                    labirinto[ind.posi][ind.posj] = 0;
+                    ind.posi--;
+                    labirinto[ind.posi][ind.posj] = 3;
                     *pontos += 10;
                 }
                 else{
@@ -45,10 +45,10 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *pontos){
                 }
             }
             else if(direcao == 3){
-                if(ind.posej < LINHAS){
-                    labirinto[ind.posei][ind.posej] = 0;
-                    ind.posei++;
-                    labirinto[ind.posei][ind.posej] = 3;
+                if(ind.posj < LINHAS - 1){
+                    labirinto[ind.posi][ind.posj] = 0;
+                    ind.posi++;
+                    labirinto[ind.posi][ind.posj] = 3;
                     *pontos -= 10;
                 }
                 else{

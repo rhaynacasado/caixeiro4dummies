@@ -27,8 +27,8 @@ int main(){
     };
 
     individuos[0].avaliacao = 0;
-    individuos[0].posei = 0;
-    individuos[0].posej = 0;
+    individuos[0].posi = LINHAS - 2;
+    individuos[0].posj = COLUNAS - 2;
 
     moveIndividuo(labirinto, individuos[0], &y);
     printLabirinto(labirinto);
