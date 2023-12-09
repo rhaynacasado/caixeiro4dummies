@@ -30,6 +30,6 @@ int main(){
     for(int i = 0; i < 10; i++){
         avalia(fitness, individuos);
         elitismo(fitness, individuos);
-    }    
+    }
     return 0;
 }
