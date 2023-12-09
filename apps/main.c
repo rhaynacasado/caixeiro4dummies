@@ -3,7 +3,6 @@
 #include <time.h>
 #include "funcoesEvolucao.h"
 #include "labirinto.h"
-#include "individuo.h"
 
 /*MARCELO EDUARDO REGINATO
 NUSP: 13676965*/
@@ -12,6 +11,7 @@ int main(){
     ind individuos[TamPop+1];
     float fitness[TamPop+1];
     srand(time(NULL));
+    float y = 0;
 
     int labirinto[LINHAS][COLUNAS] = {
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -25,7 +25,14 @@ int main(){
         {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
     };
+
+    individuos[0].avaliacao = 0;
+    individuos[0].posei = 0;
+    individuos[0].posej = 0;
+
+    moveIndividuo(labirinto, individuos[0], &y);
     printLabirinto(labirinto);
+
 
     initpop(individuos);
     for(int i = 0; i < 10; i++){

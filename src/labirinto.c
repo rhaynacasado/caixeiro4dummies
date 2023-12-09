@@ -6,8 +6,10 @@ void printLabirinto(int labirinto[LINHAS][COLUNAS]){
         for (int j = 0; j < COLUNAS; j++){
             if(labirinto[i][j] == 1)
                 printf("#");
-            else
+            else if(labirinto[i][j] == 0)
                 printf(" ");
+            else
+                printf("%d", labirinto[i][j]);
         }
         printf("\n");
     }
