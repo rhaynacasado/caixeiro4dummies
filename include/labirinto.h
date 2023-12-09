@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #define LINHAS 10
 #define COLUNAS 20
 

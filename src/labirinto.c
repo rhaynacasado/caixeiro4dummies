@@ -1,6 +1,4 @@
 #include "labirinto.h"
-#include <stdio.h>
-#include <string.h>
 
 void printLabirinto(int labirinto[LINHAS][COLUNAS]){
     for (int i = 0; i < LINHAS; i++){

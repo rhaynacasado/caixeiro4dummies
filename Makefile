@@ -9,7 +9,7 @@ make: libed myapps run
 
 all:libed myapps
 
-libed: funcoesEvolucao.o labirinto.o
+libed: funcoesEvolucao.o labirinto.o individuo.o
 
 myapps:
 	gcc $(APPS)/main.c $(OBJ)/*.o -I $(INCLUDE) -lm -o $(BIN)/programaTrab

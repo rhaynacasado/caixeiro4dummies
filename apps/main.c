@@ -3,6 +3,7 @@
 #include <time.h>
 #include "funcoesEvolucao.h"
 #include "labirinto.h"
+#include "individuo.h"
 
 /*MARCELO EDUARDO REGINATO
 NUSP: 13676965*/
@@ -14,7 +15,7 @@ int main(){
 
     int labirinto[LINHAS][COLUNAS] = {
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
         {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
         {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
         {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -31,6 +32,6 @@ int main(){
         avalia(fitness, individuos);
         elitismo(fitness, individuos);
     }
-    
+
     return 0;
 }

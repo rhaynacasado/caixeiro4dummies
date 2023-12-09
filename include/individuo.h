@@ -1,8 +1,9 @@
-#define maxx 2000
+#include "labirinto.h"
 
+#define maxx 2000
 
 typedef struct{
     float avaliacao;
-    int i;
-    int j;
+    int posei;
+    int posej;
 }ind;

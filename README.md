@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src = "./imgs/eggerlandTitle.png"/>
+    <!-- <img src = "./imgs/eggerlandTitle.png"/> -->
     <p> An Evolutionary Systems programming Project! 👾 </p>
 </h1>
 
@@ -14,14 +14,9 @@
     $ git clone https://github.com/rhaynacasado/SEv
 
 ```
-
-```bash
-    # Enter directory
-
-```
-
 ```bash
     # Compile and run
+    $ make
 
 ```
 
