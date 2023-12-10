@@ -61,47 +61,57 @@ void exterminio(individuo *ind){
         ind[i] = ind[i+1];
     for(int i = minfit2; i < TamPop - 1; i++)
         ind[i-1] = ind[i+1];
+
+    individuo vazio;
+    ind[TamPop-2] = vazio;
+    ind[TamPop-1] = vazio;
+
+    printf("pos exterminio\n");
+    printIndividuos(ind);
 }
 
-int* elitismo(individuo *ind){
-    int maxfit1 = 0, maxfit2 = 1;
+void elitismo(individuo *ind, int *maxfit1, int *maxfit2){
+    *maxfit1 = 0;
+    *maxfit2 = 1;
 
     if(ind[0].pontos < ind[1].pontos){
-        maxfit1 = 1;
-        maxfit2 = 0;
+        *maxfit1 = 1;
+        *maxfit2 = 0;
     }
 
     for(int i = 2; i < TamPop - Exterminio; i++){
-        if(ind[i].pontos > ind[maxfit2].pontos){
-            if(ind[i].pontos > ind[maxfit1].pontos){
-                maxfit2 = maxfit1;
-                maxfit1 = i;
+        if(ind[i].pontos > ind[*maxfit2].pontos){
+            if(ind[i].pontos > ind[*maxfit1].pontos){
+                *maxfit2 = *maxfit1;
+                *maxfit1 = i;
             }
-            else 
-                maxfit2 = i;
+            else
+                *maxfit2 = i;
         }
     }
-
-    int *maxfit;
-    maxfit[0] = maxfit1;
-    maxfit[1] = maxfit2;
-
-    return maxfit;
 }
 
 individuo misturaGene(individuo indini, individuo indfim){
     individuo ind;
+    for(int i = 0; i < TAM/2; i++)
+        ind.caminho[i] = indini.caminho[i];
+
     for(int i = TAM/2; i < TAM; i++)
-        indini.caminho[i] = indfim.caminho[i];
+        ind.caminho[i] = indfim.caminho[i];
+
     return ind;
 }
 
-void crossover(individuo *ind, individuo *novaPop, int maxfit1, int maxfit2){
-    novaPop[2] = misturaGene(ind[maxfit1], ind[maxfit2]);
-    novaPop[3] = misturaGene(ind[maxfit2], ind[maxfit1]);
+void crossover(individuo *ind, int maxfit1, int maxfit2){
+    individuo novaPop[TamPop];
+    int TamNovaPop = 0;
 
-    int TamNovaPop = 4; 
-    int auxiliar[10 - 2 - Exterminio];
+    novaPop[TamNovaPop++] = ind[maxfit1];
+    novaPop[TamNovaPop++] = ind[maxfit2];
+    novaPop[TamNovaPop++] = misturaGene(ind[maxfit1], ind[maxfit2]);
+    novaPop[TamNovaPop++] = misturaGene(ind[maxfit2], ind[maxfit1]);
+
+    int auxiliar[TamPop - 2 - Exterminio];
     int posAuxiliar = 0;
     
     for(int i = 0; i < TamPop - Exterminio; i++){
@@ -115,18 +125,31 @@ void crossover(individuo *ind, individuo *novaPop, int maxfit1, int maxfit2){
     novaPop[TamNovaPop++] = misturaGene(ind[auxiliar[3]], ind[maxfit2]);
     novaPop[TamNovaPop++] = misturaGene(ind[maxfit1], ind[auxiliar[4]]);
     novaPop[TamNovaPop++] = misturaGene(ind[maxfit2], ind[auxiliar[5]]);
-}
-
-void cruzamento(individuo *ind){
-    exterminio(ind);
-    int *maxfit = elitismo(ind);
-
-    individuo novaPop[TamPop];
-    novaPop[0] = ind[maxfit[0]];
-    novaPop[1] = ind[maxfit[1]];
-
-    crossover(ind, novaPop, maxfit[0], maxfit[1]);
 
     for(int i = 0; i < TamPop; i++)
         ind[i] = novaPop[i];
+}
+
+void cruzamento(individuo *ind){
+    printf("na cruzamento\n");
+    printIndividuos(ind);
+
+    exterminio(ind);
+    int maxfit1, maxfit2;
+    elitismo(ind, &maxfit1, &maxfit2);
+    printf("max1: %d, max2: %d\n", maxfit1, maxfit2);
+
+    crossover(ind, maxfit1, maxfit2);
+    printf("pos crossover\n");
+    printIndividuos(ind);
+}
+
+void printIndividuos(individuo *ind){
+    for(int i = 0; i < TamPop; i++){
+        printf("ind %d (%.0f), [", i, ind[i].pontos);
+        for(int j = 0; j < TAM; j++)
+            printf("%d, ", ind[i].caminho[j]);
+        printf("]\n");
+    }
+    printf("\n\n");
 }
