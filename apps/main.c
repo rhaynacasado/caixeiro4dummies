@@ -4,7 +4,7 @@
 NUSP: 13676965*/
 
 int main(){
-    ind individuos[TamPop];
+    individuo individuos[TamPop];
     srand(time(NULL));
 
     int labirinto[LINHAS][COLUNAS] = {

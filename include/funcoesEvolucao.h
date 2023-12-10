@@ -7,11 +7,12 @@
 #define TamPop 2
 #define Exterminio 2
 
-void initpop(ind *ind, int labirinto[LINHAS][COLUNAS]);
-void avalia(ind *ind, int labirinto[LINHAS][COLUNAS]);
-void exterminio(ind *ind);
-int* elitismo(ind *ind);
-void crossover(ind ind, ind *novaPop, int maxfit1, int maxfit2);
-ind* cruzamento(ind *ind);
+void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]);
+void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS]);
+void exterminio(individuo *ind);
+int* elitismo(individuo *ind);
+individuo misturaGene(individuo indini, individuo indfim);
+void crossover(individuo *ind, individuo *novaPop, int maxfit1, int maxfit2);
+void cruzamento(individuo *ind);
 
 #endif
