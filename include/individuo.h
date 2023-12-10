@@ -1,7 +1,10 @@
+#ifndef INDIVIDUO_H
+#define INDIVIDUO_H
+
 #include "labirinto.h"
 #include <stdlib.h>
 
-#define TAM 40
+#define TAM 5
 
 typedef struct{
     float pontos;
@@ -10,5 +13,9 @@ typedef struct{
     int caminho[TAM];
 }ind;
 
+
 void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], ind *ind);
 void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind *ind);
+
+
+#endif

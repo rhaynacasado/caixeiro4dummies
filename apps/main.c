@@ -25,20 +25,11 @@ int main(){
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
     };
 
-    // individuos[0].avaliacao = 0;
-    // individuos[0].posi = LINHAS - 2;
-    // individuos[0].posj = COLUNAS - 2;
-
-    // labirinto[individuos[0].posi][individuos[0].posj] = 3;
-
-    // moveIndividuo(labirinto, individuos[0], &y);
-    // printLabirinto(labirinto);
-
 
     initpop(individuos, labirinto);
     for(int i = 0; i < 2; i++)
         avalia(fitness, individuos, labirinto);
-    elitismo(fitness, individuos);
+    // elitismo(fitness, individuos);
 
     return 0;
 }

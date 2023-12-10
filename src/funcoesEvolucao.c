@@ -15,13 +15,15 @@ void initpop(ind *ind, int labirinto[LINHAS][COLUNAS]){
 }
 
 void avalia(float *fit, ind *ind, int labirinto[LINHAS][COLUNAS]){
-    printf("Generacao: %d\n", gen); // printa em qual geracao esta
+    printf("GERACAO: %d\n\n", gen); // printa em qual geracao esta
     gen++;
     for(int i = 0; i < TamPop; i++){
+        ind[i].pontos = 0;
         if(gen == 1)
             moveIndividuoInicial(labirinto, &ind[i]);
-        else if(gen != 1)
+        else
             moveIndividuo(labirinto, &ind[i]);
+
         for(int j = 0; j < TAM; j++){
             if(ind[i].caminho[j] == 1 || ind[i].caminho[j] == 2)
                 ind[i].pontos += 10;
@@ -58,9 +60,9 @@ void exterminio(ind *ind){
         }
     }
 
-    for(int i = min1; i < min2; i++)
+    for(int i = minfit1; i < minfit2; i++)
         ind[i] = ind[i+1];
-    for(int i = min2; i < TamPop - 1; i++)
+    for(int i = minfit2; i < TamPop - 1; i++)
         ind[i-1] = ind[i+1];
 }
 
@@ -83,39 +85,41 @@ int* elitismo(ind *ind){
         }
     }
 
-    int maxfit[2] = {maxfit1, maxfit2};
+    int *maxfit;
+    maxfit[0] = maxfit1;
+    maxfit[1] = maxfit2;
 
     return maxfit;
 }
 
-void crossover(ind ind, ind* novaPop, int maxfit1, int maxfit2){
-    int tamNovaPop = 2;
+// void crossover(ind ind, ind *novaPop, int maxfit1, int maxfit2){
+//     int tamNovaPop = 2;
 
-    for(int i = 0; (i < TamPop - Exterminio) && (tamNovaPop < TamPop); i++){
-        if(i == maxfit1 || i == maxfit2)
-            continue;
+//     for(int i = 0; (i < TamPop - Exterminio) && (tamNovaPop < TamPop); i++){
+//         if(i == maxfit1 || i == maxfit2)
+//             continue;
         
-        ind novoInd1 = ind[maxfit1];
-        ind novoInd2 = ind[i];
-        for(int j = TAM/2; j < TAM; j++){
-            novoInd1.caminho[j] = ind[i].caminho[j];
-            novoInd2.caminho[j] = ind[maxfit2].caminho[j];
-        }
-        novaPop[tamNovaPop++] = novoInd1;
-        novaPop[tamNovaPop++] = novoInd2;
-    }
-}
+//         ind novoInd1 = ind[maxfit1];
+//         ind novoInd2 = ind[i];
+//         for(int j = TAM/2; j < TAM; j++){
+//             novoInd1.caminho[j] = ind[i].caminho[j];
+//             novoInd2.caminho[j] = ind[maxfit2].caminho[j];
+//         }
+//         novaPop[tamNovaPop++] = novoInd1;
+//         novaPop[tamNovaPop++] = novoInd2;
+//     }
+// }
 
-ind* cruzamento(ind *ind){
-    exterminio(ind);
-    int maxfit[2] = elitismo(ind);
+// ind* cruzamento(ind *indiv){
+//     exterminio(indiv);
+//     int *maxfit = elitismo(indiv);
 
-    ind novaPop[TamPop];
-    novaPop[0] = ind[maxfit[0]];
-    novaPop[1] = ind[maxfit[1]];
+//     ind novaPop[TamPop];
+//     novaPop[0] = indiv[maxfit[0]];
+//     novaPop[1] = indiv[maxfit[1]];
 
-    crossover();
-    // mutacao(&novaPop);
+//     crossover(indiv, &novaPop, maxfit[0], maxfit[1]);
+//     // mutacao(&novaPop);
 
-    return &novaPop;
-}
+//     return &novaPop;
+// }

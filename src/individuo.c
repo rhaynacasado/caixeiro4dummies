@@ -2,7 +2,7 @@
 #include <time.h>
 
 void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], ind *ind){
-    // printLabirinto(labirinto);
+    printLabirinto(labirinto);
     ind->posi = LINHAS - 2;
     ind->posj = COLUNAS - 2;
 
@@ -66,15 +66,14 @@ void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], ind *ind){
                 }
             }
         }
-        // printLabirinto(labirinto);
+        printLabirinto(labirinto);
     }
-    printLabirinto(labirinto);
     labirinto[ind->posi][ind->posj] = 0;
-    // printLabirinto(labirinto);
+    printLabirinto(labirinto);
 }
 
 void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind *ind){
-    //printLabirinto(labirinto);
+    printLabirinto(labirinto);
     ind->posi = LINHAS - 2;
     ind->posj = COLUNAS - 2;
     
@@ -135,9 +134,8 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind *ind){
                 }
             }
         }
-        // printLabirinto(labirinto);
+        printLabirinto(labirinto);
     }
-    printLabirinto(labirinto);
     labirinto[ind->posi][ind->posj] = 0;
-    // printLabirinto(labirinto);
+    printLabirinto(labirinto);
 }
