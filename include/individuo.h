@@ -1,3 +1,6 @@
+#ifndef INDIVIDUO_H
+#define INDIVIDUO_H
+
 #include "labirinto.h"
 #include <stdlib.h>
 
@@ -12,3 +15,6 @@ typedef struct{
 
 void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], ind *ind);
 void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind *ind);
+
+
+#endif
