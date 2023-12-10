@@ -6,8 +6,8 @@
 int gen = 0;
 
 void initpop(ind *ind, int labirinto[LINHAS][COLUNAS]){
-    for(int i = 0; i<TamPop; i++){
-        ind[i].avaliacao = 0; // preenche o vetor com a populacao
+    for(int i = 0; i<TamPop; i++){  // preenche o vetor com a populacao
+        ind[i].pontos = 0; 
         ind[i].posi = LINHAS - 2;
         ind[i].posj = COLUNAS - 2;
         //printf("ind[%d] = %f\n", i, ind[i]); //mostrar individuos gerados
@@ -20,12 +20,12 @@ void avalia(float *fit, ind *ind, int labirinto[LINHAS][COLUNAS]){
     printf("Generacao: %d\n", gen); // printa em qual geracao esta
     gen++;
     for(int i = 0; i<TamPop; i++){
-        x = ind[i].avaliacao;
+        x = ind[i].pontos;
         y = x;
-        moveIndividuo(labirinto ,ind[i], &y);
+        moveIndividuo(labirinto, &ind[i]);
         printf("AQUI CARALHO %d, %d\n\n", ind[i].posi, ind[i].posj);
         fit[i] = y;
-        printf("\tAvaliacao %d (%f) = %f\n", i, ind[i].avaliacao, fit[i]); // essa funcao foi feita para limitar em que ponto se quer chegar a populacao, limitar sua avaliacao do sistema;
+        printf("\tAvaliacao %d (%f) = %f\n", i, ind[i].pontos, fit[i]); // essa funcao foi feita para limitar em que ponto se quer chegar a populacao, limitar sua avaliacao do sistema;
     }
 }
 
@@ -43,6 +43,6 @@ void elitismo(float *fit, ind *ind){
             continue;
         
         // crossover
-        ind[i].avaliacao = (ind[i].avaliacao + ind[maxi].avaliacao)/2.0;
+        ind[i].pontos = (ind[i].pontos + ind[maxi].pontos)/2.0;
     }
 }

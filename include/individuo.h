@@ -4,9 +4,9 @@
 #define maxx 2000
 
 typedef struct{
-    float avaliacao;
+    float pontos;
     int posi;
     int posj;
 }ind;
 
-void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind ind, float *pontos);
+void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind *ind);

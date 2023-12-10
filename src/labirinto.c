@@ -13,4 +13,5 @@ void printLabirinto(int labirinto[LINHAS][COLUNAS]){
         }
         printf("\n");
     }
+    printf("\n");
 }
