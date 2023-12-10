@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
 #include "funcoesEvolucao.h"
 
 int gen = 0;
@@ -14,7 +11,7 @@ void initpop(ind *ind, int labirinto[LINHAS][COLUNAS]){
     }
 }
 
-void avalia(float *fit, ind *ind, int labirinto[LINHAS][COLUNAS]){
+void avalia(ind *ind, int labirinto[LINHAS][COLUNAS]){
     printf("Generacao: %d\n", gen); // printa em qual geracao esta
     int gereacaoRandomica = 0;
     gen++;
@@ -92,7 +89,7 @@ int* elitismo(ind *ind){
     return maxfit;
 }
 
-void crossover(ind ind, ind *novaPop, int maxfit1, int maxfit2){
+void crossover(ind ind, ind *novoo, int maxfit1, int maxfit2){
     int tamNovaPop = 2;
 
     for(int i = 0; (i < TamPop - Exterminio) && (tamNovaPop < TamPop); i++){
@@ -109,19 +106,6 @@ void crossover(ind ind, ind *novaPop, int maxfit1, int maxfit2){
         novaPop[tamNovaPop++] = novoInd2;
     }
 }
-
-// void mutacao(ind *novaPop){
-//     for(int i = 2; i < TamPop; i++){
-//         int qntMutacoes = rand() % (TAM/4);
-
-//         for(int j = 0; j < qntMutacoes; j++){
-//             int movimento = rand() % 4;
-//             int posicao = rand() % TAM;
-
-//             novaPop[i].caminho[posicao] = movimento;
-//         }
-//     }
-// }
 
 ind* cruzamento(ind *ind){
     exterminio(ind);
