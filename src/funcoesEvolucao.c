@@ -6,7 +6,7 @@
 int gen = 0;
 
 void initpop(ind *ind, int labirinto[LINHAS][COLUNAS]){
-    for(int i = 0; i<TamPop; i++){  // preenche o vetor com a populacao
+    for(int i = 0; i < TamPop; i++){  // preenche o vetor com a populacao
         ind[i].pontos = 0; 
         ind[i].posi = LINHAS - 2;
         ind[i].posj = COLUNAS - 2;
@@ -15,18 +15,30 @@ void initpop(ind *ind, int labirinto[LINHAS][COLUNAS]){
 }
 
 void avalia(float *fit, ind *ind, int labirinto[LINHAS][COLUNAS]){
-    float x;
-    float y;
     printf("Generacao: %d\n", gen); // printa em qual geracao esta
+    int gereacaoRandomica = 0;
     gen++;
-    for(int i = 0; i<TamPop; i++){
-        x = ind[i].pontos;
-        y = x;
-        moveIndividuo(labirinto, &ind[i]);
-        printf("AQUI CARALHO %d, %d\n\n", ind[i].posi, ind[i].posj);
-        fit[i] = y;
-        printf("\tAvaliacao %d (%f) = %f\n", i, ind[i].pontos, fit[i]); // essa funcao foi feita para limitar em que ponto se quer chegar a populacao, limitar sua avaliacao do sistema;
+    for(int i = 0; i < TamPop; i++){
+        if(gereacaoRandomica == 0)
+            moveIndividuoInicial(labirinto, &ind[i]);
+        else if(gereacaoRandomica == 1)
+            moveIndividuo(labirinto, &ind[i]);
+        for(int j = 0; j < TAM; j++){
+            if(ind[i].caminho[j] == 1 || ind[i].caminho[j] == 2)
+                ind[i].pontos += 10;
+            else if(ind[i].caminho[j] == 0 || ind[i].caminho[j] == 3)
+                ind[i].pontos -= 10;
+            else if(ind[i].caminho[j] == 4)
+                ind[i].pontos -= 5;
+            printf("%d, ", ind[i].caminho[j]);
+        }
+        if(ind[i].posi - 1 < 4)
+            ind[i].pontos += 60;
+        if(ind[i].posj - 1 < 9)
+            ind[i].pontos += 40;
+        printf("SOMA DE PONTOS: %f\n", ind[i].pontos);
     }
+    gereacaoRandomica = 1;
 }
 
 void elitismo(float *fit, ind *ind){
