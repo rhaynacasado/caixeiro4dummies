@@ -16,12 +16,11 @@ void initpop(ind *ind, int labirinto[LINHAS][COLUNAS]){
 
 void avalia(float *fit, ind *ind, int labirinto[LINHAS][COLUNAS]){
     printf("Generacao: %d\n", gen); // printa em qual geracao esta
-    int gereacaoRandomica = 0;
     gen++;
     for(int i = 0; i < TamPop; i++){
-        if(gereacaoRandomica == 0)
+        if(gen == 1)
             moveIndividuoInicial(labirinto, &ind[i]);
-        else if(gereacaoRandomica == 1)
+        else if(gen != 1)
             moveIndividuo(labirinto, &ind[i]);
         for(int j = 0; j < TAM; j++){
             if(ind[i].caminho[j] == 1 || ind[i].caminho[j] == 2)
@@ -38,7 +37,6 @@ void avalia(float *fit, ind *ind, int labirinto[LINHAS][COLUNAS]){
             ind[i].pontos += 40;
         printf("SOMA DE PONTOS: %f\n", ind[i].pontos);
     }
-    gereacaoRandomica = 1;
 }
 
 void exterminio(ind *ind){
@@ -107,19 +105,6 @@ void crossover(ind ind, ind* novaPop, int maxfit1, int maxfit2){
         novaPop[tamNovaPop++] = novoInd2;
     }
 }
-
-// void mutacao(ind *novaPop){
-//     for(int i = 2; i < TamPop; i++){
-//         int qntMutacoes = rand() % (TAM/4);
-
-//         for(int j = 0; j < qntMutacoes; j++){
-//             int movimento = rand() % 4;
-//             int posicao = rand() % TAM;
-
-//             novaPop[i].caminho[posicao] = movimento;
-//         }
-//     }
-// }
 
 ind* cruzamento(ind *ind){
     exterminio(ind);

@@ -11,7 +11,6 @@ int main(){
     ind individuos[TamPop];
     float fitness[TamPop];
     srand(time(NULL));
-    float y = 0;
 
     int labirinto[LINHAS][COLUNAS] = {
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -37,7 +36,8 @@ int main(){
 
 
     initpop(individuos, labirinto);
-    avalia(fitness, individuos, labirinto);
+    for(int i = 0; i < 2; i++)
+        avalia(fitness, individuos, labirinto);
     elitismo(fitness, individuos);
 
     return 0;
