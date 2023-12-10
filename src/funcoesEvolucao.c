@@ -89,21 +89,32 @@ int* elitismo(ind *ind){
     return maxfit;
 }
 
-void crossover(ind ind, ind *novoo, int maxfit1, int maxfit2){
-    int tamNovaPop = 2;
+ind misturaGene(ind indini, ind indfim){
+    ind ind;
+    for(int i = TAM/2; i < TAM < i++)
+        indini.caminho[i] = indfim.caminho[i];
+    return ind;
+}
 
-    for(int i = 0; (i < TamPop - Exterminio) && (tamNovaPop < TamPop); i++){
+void crossover(ind ind, ind *novaPop, int maxfit1, int maxfit2){ // precisa terminar
+    novaPop[2] = misturaGene(ind[maxfit1], ind[maxfit2]);
+    novaPop[3] = misturaGene(ind[maxfit2], ind[maxfit1]);
+
+    int TamPop = 4; 
+    
+    bool adicionadoDois = 0;
+    bool adicionadoDireita = 0;
+    ind novoInd[TAM];
+
+    for(int i = 0; i < TamPop; i++){
         if(i == maxfit1 || i == maxfit2)
             continue;
-        
-        ind novoInd1 = ind[maxfit1];
-        ind novoInd2 = ind[i];
-        for(int j = TAM/2; j < TAM; j++){
-            novoInd1.caminho[j] = ind[i].caminho[j];
-            novoInd2.caminho[j] = ind[maxfit2].caminho[j];
+        if(adicionadoDois){
+        novoInd = misturaGene[ind[maxfit1], ind[i]];    
+            if(adicionadoDireita){
+                novaPop[tampopatual++] 
+            }
         }
-        novaPop[tamNovaPop++] = novoInd1;
-        novaPop[tamNovaPop++] = novoInd2;
     }
 }
 
