@@ -30,22 +30,28 @@ void avalia(float *fit, ind *ind, int labirinto[LINHAS][COLUNAS]){
 }
 
 void exterminio(ind *ind){
-    int min1 = 0, min2 = 1, min3 = 2;
+    int minfit1 = 0, minfit2 = 1;
 
-    for (int i = 0; i < tamanho; i++) {
-        if (ind[i].pontos < ind[min1].pontos) {
-            min3 = min2;
-            min2 = min1;
-            min1 = i;
-        } else if (ind[i].pontos < ind[min2].pontos) {
-            min3 = min2;
-            min2 = i;
-        } else if (ind[i].pontos < ind[min3].pontos) {
-            min3 = i;
+    if(ind[0].pontos > ind[1].pontos){
+        minfit1 = 1;
+        minfit2 = 0;
+    }
+
+    for(int i = 2; i < TamPop - Exterminio; i++){
+        if(ind[i].pontos < ind[minfit2].pontos){
+            if(ind[i].pontos < ind[minfit1].pontos){
+                minfit2 = minfit1;
+                minfit1 = i;
+            }
+            else 
+                minfit2 = i;
         }
     }
 
-    //FALTA REMOVER ESSES INDIVIDUOS AALALLALALAL
+    for(int i = min1; i < min2; i++)
+        ind[i] = ind[i+1];
+    for(int i = min2; i < TamPop - 1; i++)
+        ind[i-1] = ind[i+1];
 }
 
 int* elitismo(ind *ind){
@@ -56,7 +62,7 @@ int* elitismo(ind *ind){
         maxfit2 = 0;
     }
 
-    for(int i = 2; i < TamPop - 3; i++){
+    for(int i = 2; i < TamPop - Exterminio; i++){
         if(ind[i].pontos > ind[maxfit2].pontos){
             if(ind[i].pontos > ind[maxfit1].pontos){
                 maxfit2 = maxfit1;
@@ -75,7 +81,7 @@ int* elitismo(ind *ind){
 void crossover(ind ind, ind* novaPop, int maxfit1, int maxfit2){
     int tamNovaPop = 2;
 
-    for(int i = 0; i < TamPop - 3; i++){
+    for(int i = 0; (i < TamPop - Exterminio) && (tamNovaPop < TamPop); i++){
         if(i == maxfit1 || i == maxfit2)
             continue;
         
@@ -85,11 +91,13 @@ void crossover(ind ind, ind* novaPop, int maxfit1, int maxfit2){
             novoInd1.caminho[j] = ind[i].caminho[j];
             novoInd2.caminho[j] = ind[maxfit2].caminho[j];
         }
+        novaPop[tamNovaPop++] = novoInd1;
+        novaPop[tamNovaPop++] = novoInd2;
     }
 }
 
 // void mutacao(ind *novaPop){
-//     for(int i = 2; i < tamPop; i++){
+//     for(int i = 2; i < TamPop; i++){
 //         int qntMutacoes = rand() % (TAM/4);
 
 //         for(int j = 0; j < qntMutacoes; j++){
