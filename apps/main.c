@@ -38,7 +38,7 @@ int main(){
 
     initpop(individuos, labirinto);
     avalia(fitness, individuos, labirinto);
-    elitismo(fitness, individuos);
+    cruzamento(individuos);
 
     return 0;
 }

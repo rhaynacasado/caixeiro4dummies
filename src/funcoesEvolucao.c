@@ -48,9 +48,9 @@ void exterminio(ind *ind){
         }
     }
 
-    for(int i = min1; i < min2; i++)
+    for(int i = minfit1; i < minfit2; i++)
         ind[i] = ind[i+1];
-    for(int i = min2; i < TamPop - 1; i++)
+    for(int i = minfit2; i < TamPop - 1; i++)
         ind[i-1] = ind[i+1];
 }
 
@@ -73,7 +73,9 @@ int* elitismo(ind *ind){
         }
     }
 
-    int maxfit[2] = {maxfit1, maxfit2};
+    int *maxfit;
+    maxfit[0] = maxfit1;
+    maxfit[1] = maxfit2;
 
     return maxfit;
 }
@@ -111,13 +113,13 @@ void crossover(ind ind, ind* novaPop, int maxfit1, int maxfit2){
 
 ind* cruzamento(ind *ind){
     exterminio(ind);
-    int maxfit[2] = elitismo(ind);
+    int *maxfit = elitismo(ind);
 
     ind novaPop[TamPop];
     novaPop[0] = ind[maxfit[0]];
     novaPop[1] = ind[maxfit[1]];
 
-    crossover();
+    // crossover();
     // mutacao(&novaPop);
 
     return &novaPop;
