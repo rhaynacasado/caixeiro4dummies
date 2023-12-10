@@ -41,20 +41,96 @@ void avalia(float *fit, ind *ind, int labirinto[LINHAS][COLUNAS]){
     gereacaoRandomica = 1;
 }
 
-void elitismo(float *fit, ind *ind){
-    float maxfit = fit[1];
-    int maxi = 1;
-    for(int i = 1; i<TamPop; i++){  // seleciona o maior fit e seu indice
-        if(fit[i]>maxfit){
-            maxfit = fit[i];
-            maxi = i;   
+void exterminio(ind *ind){
+    int minfit1 = 0, minfit2 = 1;
+
+    if(ind[0].pontos > ind[1].pontos){
+        minfit1 = 1;
+        minfit2 = 0;
+    }
+
+    for(int i = 2; i < TamPop - Exterminio; i++){
+        if(ind[i].pontos < ind[minfit2].pontos){
+            if(ind[i].pontos < ind[minfit1].pontos){
+                minfit2 = minfit1;
+                minfit1 = i;
+            }
+            else 
+                minfit2 = i;
         }
     }
-    for(int i = 0;i<TamPop;i++){
-        if(i==maxi)                     // nao deixa perder o melhor individuo
+
+    for(int i = min1; i < min2; i++)
+        ind[i] = ind[i+1];
+    for(int i = min2; i < TamPop - 1; i++)
+        ind[i-1] = ind[i+1];
+}
+
+int* elitismo(ind *ind){
+    int maxfit1 = 0, maxfit2 = 1;
+
+    if(ind[0].pontos < ind[1].pontos){
+        maxfit1 = 1;
+        maxfit2 = 0;
+    }
+
+    for(int i = 2; i < TamPop - Exterminio; i++){
+        if(ind[i].pontos > ind[maxfit2].pontos){
+            if(ind[i].pontos > ind[maxfit1].pontos){
+                maxfit2 = maxfit1;
+                maxfit1 = i;
+            }
+            else 
+                maxfit2 = i;
+        }
+    }
+
+    int maxfit[2] = {maxfit1, maxfit2};
+
+    return maxfit;
+}
+
+void crossover(ind ind, ind* novaPop, int maxfit1, int maxfit2){
+    int tamNovaPop = 2;
+
+    for(int i = 0; (i < TamPop - Exterminio) && (tamNovaPop < TamPop); i++){
+        if(i == maxfit1 || i == maxfit2)
             continue;
         
-        // crossover
-        ind[i].pontos = (ind[i].pontos + ind[maxi].pontos)/2.0;
+        ind novoInd1 = ind[maxfit1];
+        ind novoInd2 = ind[i];
+        for(int j = TAM/2; j < TAM; j++){
+            novoInd1.caminho[j] = ind[i].caminho[j];
+            novoInd2.caminho[j] = ind[maxfit2].caminho[j];
+        }
+        novaPop[tamNovaPop++] = novoInd1;
+        novaPop[tamNovaPop++] = novoInd2;
     }
+}
+
+// void mutacao(ind *novaPop){
+//     for(int i = 2; i < TamPop; i++){
+//         int qntMutacoes = rand() % (TAM/4);
+
+//         for(int j = 0; j < qntMutacoes; j++){
+//             int movimento = rand() % 4;
+//             int posicao = rand() % TAM;
+
+//             novaPop[i].caminho[posicao] = movimento;
+//         }
+//     }
+// }
+
+ind* cruzamento(ind *ind){
+    exterminio(ind);
+    int maxfit[2] = elitismo(ind);
+
+    ind novaPop[TamPop];
+    novaPop[0] = ind[maxfit[0]];
+    novaPop[1] = ind[maxfit[1]];
+
+    crossover();
+    // mutacao(&novaPop);
+
+    return &novaPop;
 }
