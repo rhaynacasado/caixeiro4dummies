@@ -1,8 +1,8 @@
 #include "individuo.h"
 #include <time.h>
 
-void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], ind *ind){
-    printLabirinto(labirinto);
+void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind){
+    // printLabirinto(labirinto);
     ind->posi = LINHAS - 2;
     ind->posj = COLUNAS - 2;
 
@@ -72,8 +72,8 @@ void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], ind *ind){
     printLabirinto(labirinto);
 }
 
-void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind *ind){
-    printLabirinto(labirinto);
+void moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind){
+    //printLabirinto(labirinto);
     ind->posi = LINHAS - 2;
     ind->posj = COLUNAS - 2;
     

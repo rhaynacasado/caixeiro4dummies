@@ -1,11 +1,8 @@
-#include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
 #include "funcoesEvolucao.h"
 
 int gen = 0;
 
-void initpop(ind *ind, int labirinto[LINHAS][COLUNAS]){
+void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){
     for(int i = 0; i < TamPop; i++){  // preenche o vetor com a populacao
         ind[i].pontos = 0; 
         ind[i].posi = LINHAS - 2;
@@ -14,7 +11,7 @@ void initpop(ind *ind, int labirinto[LINHAS][COLUNAS]){
     }
 }
 
-void avalia(float *fit, ind *ind, int labirinto[LINHAS][COLUNAS]){
+void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS]){
     printf("GERACAO: %d\n\n", gen); // printa em qual geracao esta
     gen++;
     for(int i = 0; i < TamPop; i++){
@@ -41,7 +38,7 @@ void avalia(float *fit, ind *ind, int labirinto[LINHAS][COLUNAS]){
     }
 }
 
-void exterminio(ind *ind){
+void exterminio(individuo *ind){
     int minfit1 = 0, minfit2 = 1;
 
     if(ind[0].pontos > ind[1].pontos){
@@ -66,7 +63,7 @@ void exterminio(ind *ind){
         ind[i-1] = ind[i+1];
 }
 
-int* elitismo(ind *ind){
+int* elitismo(individuo *ind){
     int maxfit1 = 0, maxfit2 = 1;
 
     if(ind[0].pontos < ind[1].pontos){
@@ -92,34 +89,44 @@ int* elitismo(ind *ind){
     return maxfit;
 }
 
-// void crossover(ind ind, ind *novaPop, int maxfit1, int maxfit2){
-//     int tamNovaPop = 2;
+individuo misturaGene(individuo indini, individuo indfim){
+    individuo ind;
+    for(int i = TAM/2; i < TAM; i++)
+        indini.caminho[i] = indfim.caminho[i];
+    return ind;
+}
 
-//     for(int i = 0; (i < TamPop - Exterminio) && (tamNovaPop < TamPop); i++){
-//         if(i == maxfit1 || i == maxfit2)
-//             continue;
-        
-//         ind novoInd1 = ind[maxfit1];
-//         ind novoInd2 = ind[i];
-//         for(int j = TAM/2; j < TAM; j++){
-//             novoInd1.caminho[j] = ind[i].caminho[j];
-//             novoInd2.caminho[j] = ind[maxfit2].caminho[j];
-//         }
-//         novaPop[tamNovaPop++] = novoInd1;
-//         novaPop[tamNovaPop++] = novoInd2;
-//     }
-// }
+void crossover(individuo *ind, individuo *novaPop, int maxfit1, int maxfit2){
+    novaPop[2] = misturaGene(ind[maxfit1], ind[maxfit2]);
+    novaPop[3] = misturaGene(ind[maxfit2], ind[maxfit1]);
 
-// ind* cruzamento(ind *indiv){
-//     exterminio(indiv);
-//     int *maxfit = elitismo(indiv);
+    int TamNovaPop = 4; 
+    int auxiliar[10 - 2 - Exterminio];
+    int posAuxiliar = 0;
+    
+    for(int i = 0; i < TamPop - Exterminio; i++){
+        if(i != maxfit1 && i != maxfit2)
+            auxiliar[posAuxiliar++] = i;
+    }
 
-//     ind novaPop[TamPop];
-//     novaPop[0] = indiv[maxfit[0]];
-//     novaPop[1] = indiv[maxfit[1]];
+    novaPop[TamNovaPop++] = misturaGene(ind[maxfit1], ind[auxiliar[0]]);
+    novaPop[TamNovaPop++] = misturaGene(ind[maxfit2], ind[auxiliar[1]]);
+    novaPop[TamNovaPop++] = misturaGene(ind[auxiliar[2]], ind[maxfit1]);
+    novaPop[TamNovaPop++] = misturaGene(ind[auxiliar[3]], ind[maxfit2]);
+    novaPop[TamNovaPop++] = misturaGene(ind[maxfit1], ind[auxiliar[4]]);
+    novaPop[TamNovaPop++] = misturaGene(ind[maxfit2], ind[auxiliar[5]]);
+}
 
-//     crossover(indiv, &novaPop, maxfit[0], maxfit[1]);
-//     // mutacao(&novaPop);
+void cruzamento(individuo *ind){
+    exterminio(ind);
+    int *maxfit = elitismo(ind);
 
-//     return &novaPop;
-// }
+    individuo novaPop[TamPop];
+    novaPop[0] = ind[maxfit[0]];
+    novaPop[1] = ind[maxfit[1]];
+
+    crossover(ind, novaPop, maxfit[0], maxfit[1]);
+
+    for(int i = 0; i < TamPop; i++)
+        ind[i] = novaPop[i];
+}

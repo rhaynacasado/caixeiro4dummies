@@ -11,11 +11,10 @@ typedef struct{
     int posi;
     int posj;
     int caminho[TAM];
-}ind;
+} individuo;
 
-
-void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], ind *ind);
-void moveIndividuo(int labirinto[LINHAS][COLUNAS], ind *ind);
+void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind);
+void moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind);
 
 
 #endif
