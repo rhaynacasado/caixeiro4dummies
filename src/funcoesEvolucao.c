@@ -73,11 +73,23 @@ int* elitismo(ind *ind){
 }
 
 void crossover(ind ind, ind* novaPop, int maxfit1, int maxfit2){
+    int tamNovaPop = 2;
 
+    for(int i = 0; i < TamPop - 3; i++){
+        if(i == maxfit1 || i == maxfit2)
+            continue;
+        
+        ind novoInd1 = ind[maxfit1];
+        ind novoInd2 = ind[i];
+        for(int j = TAM/2; j < TAM; j++){
+            novoInd1.caminho[j] = ind[i].caminho[j];
+            novoInd2.caminho[j] = ind[maxfit2].caminho[j];
+        }
+    }
 }
 
 // void mutacao(ind *novaPop){
-//     for(int i = 2; i < TAM; i++){
+//     for(int i = 2; i < tamPop; i++){
 //         int qntMutacoes = rand() % (TAM/4);
 
 //         for(int j = 0; j < qntMutacoes; j++){
