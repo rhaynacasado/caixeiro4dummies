@@ -1,7 +1,7 @@
 #include "individuo.h"
 #include <time.h>
 
-int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind){
+int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE  *arquivo){
     ind->posi = LINHAS - 2;
     ind->posj = COLUNAS - 2;
 
@@ -9,7 +9,7 @@ int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind){
         int direcao = rand() % 8;
 
         if(ind->posi == 1 && ind->posj == 1){
-            printLabirinto(labirinto);
+            printLabirinto(labirinto, arquivo);
             return 0;
         }
 
@@ -60,19 +60,19 @@ int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind){
             }
         }
     }
-    printLabirinto(labirinto);
+    printLabirinto(labirinto, arquivo);
     labirinto[ind->posi][ind->posj] = 0;
     return 1;
 }
 
-int moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind){
+int moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE *arquivo){
     ind->posi = LINHAS - 2;
     ind->posj = COLUNAS - 2;
     
     for(int i = 0; i < TAM; i++){
         if(ind->posi == 1 && ind->posj == 1){
             ind[i].pontos = 5000;
-            printLabirinto(labirinto);
+            printLabirinto(labirinto, arquivo);
             return 0;
         }
         if(labirinto[ind->posi][ind->posj] != 1){
@@ -122,17 +122,13 @@ int moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind){
             }
         }
     }
-    printLabirinto(labirinto);
+    printLabirinto(labirinto, arquivo);
     labirinto[ind->posi][ind->posj] = 0;
     return 1;
 }
 
-void printIndividuos(individuo *ind){
-    for(int i = 0; i < TamPop; i++){
-        printf("ind %d (%.0f)\n", i, ind[i].pontos);
-        // for(int j = 0; j < TAM; j++)
-            // printf("%d, ", ind[i].caminho[j]);
-        // printf("]\n");
-    }
-    printf("\n\n");
+void printIndividuos(individuo *ind, FILE *arquivo){
+    for(int i = 0; i < TamPop; i++)
+        fprintf(arquivo, "ind %d (%.0f pontos)\n", i, ind[i].pontos);
+    fprintf(arquivo, "\n\n");
 }

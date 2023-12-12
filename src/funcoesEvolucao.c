@@ -11,17 +11,18 @@ void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){
     }
 }
 
-void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS]){
-    printf("GERACAO: %d\n\n", gen); // printa em qual geracao esta
+void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo){
+    fprintf(arquivo, "GERACAO: %d\n\n", gen); // printa em qual geracao esta
+    labirinto[1][1] = 2;
     gen++;
     int chegou;
     for(int i = 0; i < TamPop; i++){
         ind[i].pontos = 0;
         labirinto[1][1] = 2;
         if(gen == 1)
-            chegou = moveIndividuoInicial(labirinto, &ind[i]);
+            chegou = moveIndividuoInicial(labirinto, &ind[i], arquivo);
         else
-            chegou = moveIndividuo(labirinto, &ind[i]);
+            chegou = moveIndividuo(labirinto, &ind[i], arquivo);
 
         for(int j = 0; j < TAM; j++){
             if(ind[i].caminho[j] == 1 || ind[i].caminho[j] == 2)

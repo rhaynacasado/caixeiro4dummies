@@ -1,9 +1,14 @@
 #include "funcoesEvolucao.h"
 
-/*MARCELO EDUARDO REGINATO
-NUSP: 13676965*/
+#define GERACAO 5
 
 int main(){
+    FILE *arquivo = fopen("log.txt", "w");
+    if (arquivo == NULL) {
+        printf("Falha no processamento do arquivo.\n");
+        exit(1);
+    }
+
     individuo individuos[TamPop];
     srand(time(NULL));
 
@@ -21,10 +26,12 @@ int main(){
     };
 
     initpop(individuos, labirinto);
-    for(int i = 0; i < 5; i++){
-        avalia(individuos, labirinto);
-        printIndividuos(individuos);
+    for(int i = 0; i < GERACAO; i++){
+        avalia(individuos, labirinto, arquivo);
+        printIndividuos(individuos, arquivo);
         cruzamento(individuos);
     }
+
+    fclose(arquivo);
     return 0;
 }

@@ -1,17 +1,17 @@
 #include "labirinto.h"
 
-void printLabirinto(int labirinto[LINHAS][COLUNAS]){
+void printLabirinto(int labirinto[LINHAS][COLUNAS], FILE *arquivo){
     for (int i = 0; i < LINHAS; i++){
-        printf("%d - ", i);
+        fprintf(arquivo, "%d - ", i);
         for (int j = 0; j < COLUNAS; j++){
             if(labirinto[i][j] == 1)
-                printf("#");
+                fprintf(arquivo, "#");
             else if(labirinto[i][j] == 0)
-                printf(" ");
+                fprintf(arquivo, " ");
             else
-                printf("%d", labirinto[i][j]);
+                fprintf(arquivo, "%d", labirinto[i][j]);
         }
-        printf("\n");
+        fprintf(arquivo, "\n");
     }
-    printf("\n");
+    fprintf(arquivo, "\n");
 }

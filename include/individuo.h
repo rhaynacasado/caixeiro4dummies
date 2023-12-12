@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 #define TamPop 10
-#define TAM 100
+#define TAM 70
 
 typedef struct{
     float pontos;
@@ -14,8 +14,8 @@ typedef struct{
     int caminho[TAM];
 } individuo;
 
-int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind);
-int moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind);
-void printIndividuos(individuo *ind);
+int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE *arquivo);
+int moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE *arquivo);
+void printIndividuos(individuo *ind, FILE *arquivo);
 
 #endif
