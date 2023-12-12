@@ -13,9 +13,8 @@ void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){
 
 void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo){
     fprintf(arquivo, "GERACAO: %d\n\n", gen); // printa em qual geracao esta
-    labirinto[1][1] = 2;
     gen++;
-    int chegou;
+    int chegou = 1;
     for(int i = 0; i < TamPop; i++){
         ind[i].pontos = 0;
         labirinto[1][1] = 2;
@@ -36,9 +35,11 @@ void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo){
             ind[i].pontos += 60;
         if(ind[i].posj - 1 < 9)
             ind[i].pontos += 40;
-        fprintf(arquivo, "SOMA DE PONTOS: %f\n\n", ind[i].pontos);
-        if(chegou == 0)
-            printf("CHEGOU COMEU O 2 CRL\n");
+        if(chegou == 0){
+            printf("chegou no 2 na geração %d\n", gen - 1);
+            ind[i].pontos += 80;
+        }
+        fprintf(arquivo, "SOMA DE PONTOS: %.2f\n", ind[i].pontos);
     }
 }
 
