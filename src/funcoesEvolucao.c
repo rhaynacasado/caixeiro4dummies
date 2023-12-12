@@ -36,7 +36,7 @@ void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo){
             ind[i].pontos += 60;
         if(ind[i].posj - 1 < 9)
             ind[i].pontos += 40;
-        printf("SOMA DE PONTOS: %f\n", ind[i].pontos);
+        fprintf(arquivo, "SOMA DE PONTOS: %f\n\n", ind[i].pontos);
         if(chegou == 0)
             printf("CHEGOU COMEU O 2 CRL\n");
     }

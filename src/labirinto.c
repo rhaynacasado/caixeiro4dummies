@@ -13,5 +13,4 @@ void printLabirinto(int labirinto[LINHAS][COLUNAS], FILE *arquivo){
         }
         fprintf(arquivo, "\n");
     }
-    fprintf(arquivo, "\n");
 }
