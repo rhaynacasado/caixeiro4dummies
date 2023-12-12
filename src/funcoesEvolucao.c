@@ -11,16 +11,16 @@ void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){
     }
 }
 
-void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS]){
-    printf("GERACAO: %d\n\n", gen); // printa em qual geracao esta
-    ind[1][1] = 2;
+void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo){
+    fprintf(arquivo, "GERACAO: %d\n\n", gen); // printa em qual geracao esta
+    labirinto[1][1] = 2;
     gen++;
     for(int i = 0; i < TamPop; i++){
         ind[i].pontos = 0;
         if(gen == 1)
-            moveIndividuoInicial(labirinto, &ind[i]);
+            moveIndividuoInicial(labirinto, &ind[i], arquivo);
         else
-            moveIndividuo(labirinto, &ind[i]);
+            moveIndividuo(labirinto, &ind[i], arquivo);
 
         for(int j = 0; j < TAM; j++){
             if(ind[i].caminho[j] == 1 || ind[i].caminho[j] == 2)
@@ -34,7 +34,7 @@ void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS]){
             ind[i].pontos += 60;
         if(ind[i].posj - 1 < 9)
             ind[i].pontos += 40;
-        printf("SOMA DE PONTOS: %f\n\n", ind[i].pontos);
+        fprintf(arquivo, "SOMA DE PONTOS: %f\n\n", ind[i].pontos);
     }
 }
 

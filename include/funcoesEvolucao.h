@@ -7,7 +7,7 @@
 #define Exterminio 2
 
 void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]);
-void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS]);
+void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo);
 void exterminio(individuo *ind);
 void elitismo(individuo *ind, int *maxfit1, int *maxfit2);
 individuo misturaGene(individuo indini, individuo indfim);

@@ -1,7 +1,7 @@
 #include "individuo.h"
 #include <time.h>
 
-void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind){
+void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE *arquivo){
     ind->posi = LINHAS - 2;
     ind->posj = COLUNAS - 2;
 
@@ -60,11 +60,11 @@ void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind){
             }
         }
     }
-    printLabirinto(labirinto);
+    printLabirinto(labirinto, arquivo);
     labirinto[ind->posi][ind->posj] = 0;
 }
 
-void moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind){
+void moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE *arquivo){
     ind->posi = LINHAS - 2;
     ind->posj = COLUNAS - 2;
     
@@ -120,12 +120,12 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind){
             }
         }
     }
-    printLabirinto(labirinto);
+    printLabirinto(labirinto, arquivo);
     labirinto[ind->posi][ind->posj] = 0;
 }
 
-void printIndividuos(individuo *ind){
+void printIndividuos(individuo *ind, FILE *arquivo){
     for(int i = 0; i < TamPop; i++)
-        printf("ind %d (%.0f pontos)\n", i, ind[i].pontos);
-    printf("\n\n");
+        fprintf(arquivo, "ind %d (%.0f pontos)\n", i, ind[i].pontos);
+    fprintf(arquivo, "\n\n");
 }
