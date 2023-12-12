@@ -4,7 +4,6 @@
 #include "individuo.h"
 #include <time.h>
 
-#define TamPop 10
 #define Exterminio 2
 
 void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]);

@@ -4,6 +4,7 @@
 #include "labirinto.h"
 #include <stdlib.h>
 
+#define TamPop 10
 #define TAM 5
 
 typedef struct{
