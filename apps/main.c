@@ -25,6 +25,9 @@ int main(){
         avalia(individuos, labirinto);
     }
     cruzamento(individuos);
-
+    printf("na main\n");
+    // printIndividuos(individuos);
+    avalia(individuos, labirinto);
+    printIndividuos(individuos);
     return 0;
 }
