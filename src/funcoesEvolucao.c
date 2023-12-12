@@ -7,7 +7,9 @@ void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){
         ind[i].pontos = 0; 
         ind[i].posi = LINHAS - 2;
         ind[i].posj = COLUNAS - 2;
-        //printf("ind[%d] = %f\n", i, ind[i]); //mostrar individuos gerados
+        for(int j = 0; j < TAM; j++){
+            ind[i].caminho[j] = 0;
+        }
     }
 }
 
