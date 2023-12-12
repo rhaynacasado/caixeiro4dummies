@@ -13,6 +13,7 @@ void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){
 
 void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS]){
     printf("GERACAO: %d\n\n", gen); // printa em qual geracao esta
+    ind[1][1] = 2;
     gen++;
     for(int i = 0; i < TamPop; i++){
         ind[i].pontos = 0;
