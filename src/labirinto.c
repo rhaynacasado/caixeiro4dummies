@@ -8,7 +8,7 @@ void printLabirinto(int labirinto[LINHAS][COLUNAS], FILE *arquivo){
                 fprintf(arquivo, "#");
             else if(labirinto[i][j] == 0)
                 fprintf(arquivo, " ");
-            else
+            else if(labirinto[i][j] == 3 || labirinto[i][j] == 2)
                 fprintf(arquivo, "%d", labirinto[i][j]);
         }
         fprintf(arquivo, "\n");

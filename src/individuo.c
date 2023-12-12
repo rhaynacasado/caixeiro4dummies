@@ -71,7 +71,6 @@ int moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE *arquivo)
     
     for(int i = 0; i < TAM; i++){
         if(ind->posi == 1 && ind->posj == 1){
-            ind[i].pontos = 5000;
             printLabirinto(labirinto, arquivo);
             return 0;
         }
