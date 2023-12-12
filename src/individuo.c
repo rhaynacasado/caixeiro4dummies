@@ -128,6 +128,6 @@ int moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE *arquivo)
 
 void printIndividuos(individuo *ind, FILE *arquivo){
     for(int i = 0; i < TamPop; i++)
-        fprintf(arquivo, "ind %d (%.0f pontos)\n", i, ind[i].pontos);
+        fprintf(arquivo, "individuo %d (%.0f pontos)\n", i, ind[i].pontos);
     fprintf(arquivo, "\n\n");
 }

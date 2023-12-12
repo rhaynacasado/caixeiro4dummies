@@ -39,7 +39,7 @@ void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo){
             printf("chegou no 2 na geração %d\n", gen - 1);
             ind[i].pontos += 80;
         }
-        fprintf(arquivo, "SOMA DE PONTOS: %.2f\n", ind[i].pontos);
+        fprintf(arquivo, "SOMA DE PONTOS: %.2f\n\n", ind[i].pontos);
     }
 }
 
