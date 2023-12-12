@@ -23,9 +23,8 @@ int main(){
     initpop(individuos, labirinto);
     for(int i = 0; i < 2; i++){
         avalia(individuos, labirinto);
-        cruzamento(individuos);
         printIndividuos(individuos);
+        cruzamento(individuos);
     }
-
     return 0;
 }
