@@ -28,7 +28,6 @@ void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS]){
                 ind[i].pontos -= 10;
             else if(ind[i].caminho[j] == 4)
                 ind[i].pontos -= 5;
-            printf("%d, ", ind[i].caminho[j]);
         }
         if(ind[i].posi - 1 < 4)
             ind[i].pontos += 60;

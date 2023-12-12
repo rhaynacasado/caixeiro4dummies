@@ -8,8 +8,10 @@ void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind){
     for(int i = 0; i < TAM; i++){
         int direcao = rand() % 8;
 
-        if(labirinto[ind->posi][ind->posj] == 2)
+        if(labirinto[ind->posi][ind->posj] == 2){
+            ind[i].pontos = 5000;
             break;
+        }
 
         if(labirinto[ind->posi][ind->posj] != 1){
             if(direcao == 0 || direcao == 4){
@@ -58,8 +60,8 @@ void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind){
             }
         }
     }
-    labirinto[ind->posi][ind->posj] = 0;
     printLabirinto(labirinto);
+    labirinto[ind->posi][ind->posj] = 0;
 }
 
 void moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind){
@@ -67,8 +69,10 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind){
     ind->posj = COLUNAS - 2;
     
     for(int i = 0; i < TAM; i++){
-        if(labirinto[ind->posi][ind->posj] == 2)
+        if(labirinto[ind->posi][ind->posj] == 2){
+            ind[i].pontos = 5000;
             break;
+        }
         if(labirinto[ind->posi][ind->posj] != 1){
             if(ind->caminho[i] == 0){
                 if(ind->posj < COLUNAS - 2){
@@ -116,16 +120,16 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind){
             }
         }
     }
-    labirinto[ind->posi][ind->posj] = 0;
     printLabirinto(labirinto);
+    labirinto[ind->posi][ind->posj] = 0;
 }
 
 void printIndividuos(individuo *ind){
     for(int i = 0; i < TamPop; i++){
-        printf("ind %d (%.0f), [", i, ind[i].pontos);
-        for(int j = 0; j < TAM; j++)
-            printf("%d, ", ind[i].caminho[j]);
-        printf("]\n");
+        printf("ind %d (%.0f)\n", i, ind[i].pontos);
+        // for(int j = 0; j < TAM; j++)
+            // printf("%d, ", ind[i].caminho[j]);
+        // printf("]\n");
     }
     printf("\n\n");
 }
