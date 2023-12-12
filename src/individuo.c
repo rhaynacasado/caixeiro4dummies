@@ -1,16 +1,16 @@
 #include "individuo.h"
 #include <time.h>
 
-void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind){
+int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind){
     ind->posi = LINHAS - 2;
     ind->posj = COLUNAS - 2;
 
     for(int i = 0; i < TAM; i++){
         int direcao = rand() % 8;
 
-        if(labirinto[ind->posi][ind->posj] == 2){
-            ind[i].pontos = 5000;
-            break;
+        if(ind->posi == 1 && ind->posj == 1){
+            printLabirinto(labirinto);
+            return 0;
         }
 
         if(labirinto[ind->posi][ind->posj] != 1){
@@ -62,16 +62,18 @@ void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind){
     }
     printLabirinto(labirinto);
     labirinto[ind->posi][ind->posj] = 0;
+    return 1;
 }
 
-void moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind){
+int moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind){
     ind->posi = LINHAS - 2;
     ind->posj = COLUNAS - 2;
     
     for(int i = 0; i < TAM; i++){
-        if(labirinto[ind->posi][ind->posj] == 2){
+        if(ind->posi == 1 && ind->posj == 1){
             ind[i].pontos = 5000;
-            break;
+            printLabirinto(labirinto);
+            return 0;
         }
         if(labirinto[ind->posi][ind->posj] != 1){
             if(ind->caminho[i] == 0){
@@ -122,6 +124,7 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind){
     }
     printLabirinto(labirinto);
     labirinto[ind->posi][ind->posj] = 0;
+    return 1;
 }
 
 void printIndividuos(individuo *ind){

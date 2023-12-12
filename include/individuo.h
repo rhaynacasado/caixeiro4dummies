@@ -14,8 +14,8 @@ typedef struct{
     int caminho[TAM];
 } individuo;
 
-void moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind);
-void moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind);
+int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind);
+int moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind);
 void printIndividuos(individuo *ind);
 
 #endif

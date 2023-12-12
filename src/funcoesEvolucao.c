@@ -14,12 +14,14 @@ void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){
 void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS]){
     printf("GERACAO: %d\n\n", gen); // printa em qual geracao esta
     gen++;
+    int chegou;
     for(int i = 0; i < TamPop; i++){
         ind[i].pontos = 0;
+        labirinto[1][1] = 2;
         if(gen == 1)
-            moveIndividuoInicial(labirinto, &ind[i]);
+            chegou = moveIndividuoInicial(labirinto, &ind[i]);
         else
-            moveIndividuo(labirinto, &ind[i]);
+            chegou = moveIndividuo(labirinto, &ind[i]);
 
         for(int j = 0; j < TAM; j++){
             if(ind[i].caminho[j] == 1 || ind[i].caminho[j] == 2)
@@ -34,6 +36,8 @@ void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS]){
         if(ind[i].posj - 1 < 9)
             ind[i].pontos += 40;
         printf("SOMA DE PONTOS: %f\n", ind[i].pontos);
+        if(chegou == 0)
+            printf("CHEGOU COMEU O 2 CRL\n");
     }
 }
 
