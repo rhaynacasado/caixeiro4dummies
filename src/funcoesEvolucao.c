@@ -1,6 +1,6 @@
 #include "funcoesEvolucao.h"
 
-int gen = 0;
+int genAtual = -1;
 
 void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){
     for(int i = 0; i < TamPop; i++){  // preenche o vetor com a populacao
@@ -12,13 +12,13 @@ void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){
 }
 
 void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo){
-    fprintf(arquivo, "GERACAO: %d\n\n", gen); // printa em qual geracao esta
-    gen++;
+    genAtual++;
+    fprintf(arquivo, "GERACAO: %d\n\n", genAtual); // printa em qual geracao esta
     int chegou = 1;
     for(int i = 0; i < TamPop; i++){
         ind[i].pontos = 0;
         labirinto[1][1] = 2;
-        if(gen == 1)
+        if(genAtual == 0)
             chegou = moveIndividuoInicial(labirinto, &ind[i], arquivo);
         else
             chegou = moveIndividuo(labirinto, &ind[i], arquivo);
@@ -36,7 +36,7 @@ void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo){
         if(ind[i].posj - 1 < 9)
             ind[i].pontos += 40;
         if(chegou == 0){
-            printf("chegou no 2 na geração %d\n", gen - 1);
+            printf("chegou no 2 na geração %d\n", genAtual);
             ind[i].pontos += 80;
         }
         fprintf(arquivo, "SOMA DE PONTOS: %.2f\n\n", ind[i].pontos);
