@@ -139,3 +139,13 @@ void moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind){
     labirinto[ind->posi][ind->posj] = 0;
     printLabirinto(labirinto);
 }
+
+void printIndividuos(individuo *ind){
+    for(int i = 0; i < TamPop; i++){
+        printf("ind %d (%.0f), [", i, ind[i].pontos);
+        for(int j = 0; j < TAM; j++)
+            printf("%d, ", ind[i].caminho[j]);
+        printf("]\n");
+    }
+    printf("\n\n");
+}

@@ -14,6 +14,5 @@ void elitismo(individuo *ind, int *maxfit1, int *maxfit2);
 individuo misturaGene(individuo indini, individuo indfim);
 void crossover(individuo *ind, int maxfit1, int maxfit2);
 void cruzamento(individuo *ind);
-void printIndividuos(individuo *ind);
 
 #endif

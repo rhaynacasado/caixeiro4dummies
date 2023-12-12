@@ -65,9 +65,6 @@ void exterminio(individuo *ind){
     individuo vazio;
     ind[TamPop-2] = vazio;
     ind[TamPop-1] = vazio;
-
-    printf("pos exterminio\n");
-    printIndividuos(ind);
 }
 
 void elitismo(individuo *ind, int *maxfit1, int *maxfit2){
@@ -131,25 +128,9 @@ void crossover(individuo *ind, int maxfit1, int maxfit2){
 }
 
 void cruzamento(individuo *ind){
-    printf("na cruzamento\n");
-    printIndividuos(ind);
-
     exterminio(ind);
     int maxfit1, maxfit2;
     elitismo(ind, &maxfit1, &maxfit2);
-    printf("max1: %d, max2: %d\n", maxfit1, maxfit2);
 
     crossover(ind, maxfit1, maxfit2);
-    printf("pos crossover\n");
-    printIndividuos(ind);
-}
-
-void printIndividuos(individuo *ind){
-    for(int i = 0; i < TamPop; i++){
-        printf("ind %d (%.0f), [", i, ind[i].pontos);
-        for(int j = 0; j < TAM; j++)
-            printf("%d, ", ind[i].caminho[j]);
-        printf("]\n");
-    }
-    printf("\n\n");
 }
