@@ -95,8 +95,8 @@ void elitismo(individuo *ind, int *maxfit1, int *maxfit2){ // encontra os dois m
         }
     }
 }
-// mistura os movimentos de dois individuos (metade de cada)
-individuo misturaGene(individuo indini, individuo indfim){
+
+individuo misturaGene(individuo indini, individuo indfim){ // mistura os movimentos de dois individuos (metade de cada)
     individuo ind;                          
     for(int i = 0; i < TAM/2; i++)          //insere primeira metade no vetor
         ind.caminho[i] = indini.caminho[i];
@@ -137,9 +137,9 @@ void crossover(individuo *ind, int maxfit1, int maxfit2){ // mistura os moviment
 
 void mutacaoQuatro(individuo *novaPop){ // retira movimentos invalidos e troca por movimentos aleatorios
     for(int i = 2; i < TamPop; i++){
-        for(int j = 0; j < TAM; j++){
+        for(int j = 0; j < TAM; j++){           // procura por movimentos invalidos
             if(novaPop[i].caminho[j] == 4){
-                int random = rand() % 4;
+                int random = rand() % 4;        // gera numeros randomicos para substituilos
                 novaPop[i].caminho[j] = random; 
             }
         }
@@ -148,13 +148,12 @@ void mutacaoQuatro(individuo *novaPop){ // retira movimentos invalidos e troca p
 
 void mutacao(individuo *novaPop){ // troca alguns movimentos por movimentos aleatorios
     for(int i = 2; i < TamPop; i++){
-        int qntMutacoes = rand() % (TAM/4);
+        int qntMutacoes = rand() % (TAM/4); 
 
-        for(int j = 0; j < qntMutacoes; j++){
+        for(int j = 0; j < qntMutacoes; j++){   //gerando posicoes e movimentos aleatorios
             int movimento = rand() % 4;
             int posicao = rand() % TAM;
-
-            novaPop[i].caminho[posicao] = movimento;
+            novaPop[i].caminho[posicao] = movimento; //fazendo a troca de alguns movimentos por movimentos aleatorios
         }
     }
 }
