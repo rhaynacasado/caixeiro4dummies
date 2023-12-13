@@ -4,7 +4,7 @@ int genAtual = -1; // geracao atual
 
 void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){ // inicia a populacao na posicao inicial e sem pontos ou movimentos
     for(int i = 0; i < TamPop; i++){  // preenche o vetor com a populacao
-        ind[i].pontos = 0; 
+        ind[i].pontos = 0;            // define valores padroes para os individuos
         ind[i].posi = LINHAS - 2;
         ind[i].posj = COLUNAS - 2;
         for(int j = 0; j < TAM; j++){
@@ -17,27 +17,27 @@ void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo){ // q
     genAtual++;
     fprintf(arquivo, "GERACAO: %d\n\n", genAtual); // printa em qual geracao esta
     int chegou = 1;
-    for(int i = 0; i < TamPop; i++){
+    for(int i = 0; i < TamPop; i++){                // iteracao para utilizar todos os individuos do vetor
         ind[i].pontos = 0;
         labirinto[1][1] = 2;
-        if(genAtual == 0)
+        if(genAtual == 0)                           // fazendo a movimentacao dos indiviuos, sendo a inicial uma movimentacao randomica
             chegou = moveIndividuoInicial(labirinto, &ind[i], arquivo);
         else
             chegou = moveIndividuo(labirinto, &ind[i], arquivo);
 
-        for(int j = 0; j < TAM; j++){
+        for(int j = 0; j < TAM; j++){               // apartir do caminho feito por cada individou, realiza atribuicao de pontos
             if(ind[i].caminho[j] == 1 || ind[i].caminho[j] == 2)
                 ind[i].pontos += 10;
             else if(ind[i].caminho[j] == 0 || ind[i].caminho[j] == 3)
                 ind[i].pontos -= 10;
             else if(ind[i].caminho[j] == 4)
                 ind[i].pontos -= 5;
-        }
+        }                                       // recompensas caso o individuo chegue proximo ao objetivo
         if(ind[i].posi - 1 < 4)
             ind[i].pontos += 60;
         if(ind[i].posj - 1 < 9)
             ind[i].pontos += 40;
-        if(chegou == 0){
+        if(chegou == 0){                            // caso o individuo alcance o objetivo atribui uma quantidade maior de pontos
             printf("chegou no 2 na geração %d\n", genAtual);
             ind[i].pontos += 80;
         }
@@ -52,7 +52,7 @@ void exterminio(individuo *ind){ // encontra e elimina os dois piores individuos
         minfit1 = 1;
         minfit2 = 0;
     }
-
+    //seleciona os dois individuos com menores fitness                                    
     for(int i = 2; i < TamPop - Exterminio; i++){
         if(ind[i].pontos < ind[minfit2].pontos){
             if(ind[i].pontos < ind[minfit1].pontos){
@@ -63,12 +63,13 @@ void exterminio(individuo *ind){ // encontra e elimina os dois piores individuos
                 minfit2 = i;
         }
     }
-
+    //deslocando o restante do vetor para frente
     for(int i = minfit1; i < minfit2; i++)
         ind[i] = ind[i+1];
     for(int i = minfit2; i < TamPop - 1; i++)
         ind[i-1] = ind[i+1];
 
+    //preenchendo os individuos exterminados com valores insignificantes
     individuo vazio;
     ind[TamPop-2] = vazio;
     ind[TamPop-1] = vazio;
@@ -82,7 +83,7 @@ void elitismo(individuo *ind, int *maxfit1, int *maxfit2){ // encontra os dois m
         *maxfit1 = 1;
         *maxfit2 = 0;
     }
-
+    //seleciona os dois individuos com maiores fitness
     for(int i = 2; i < TamPop - Exterminio; i++){
         if(ind[i].pontos > ind[*maxfit2].pontos){
             if(ind[i].pontos > ind[*maxfit1].pontos){
@@ -94,13 +95,13 @@ void elitismo(individuo *ind, int *maxfit1, int *maxfit2){ // encontra os dois m
         }
     }
 }
-
-individuo misturaGene(individuo indini, individuo indfim){ // mistura os movimentos de dois individuos (metade de cada)
-    individuo ind;
-    for(int i = 0; i < TAM/2; i++)
+// mistura os movimentos de dois individuos (metade de cada)
+individuo misturaGene(individuo indini, individuo indfim){
+    individuo ind;                          
+    for(int i = 0; i < TAM/2; i++)          //insere primeira metade no vetor
         ind.caminho[i] = indini.caminho[i];
 
-    for(int i = TAM/2; i < TAM; i++)
+    for(int i = TAM/2; i < TAM; i++)        //insere segunda metade no vetor
         ind.caminho[i] = indfim.caminho[i];
 
     return ind;
