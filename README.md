@@ -20,6 +20,7 @@ The evolution is made by exterminating the worst generated way and keeping the b
 ```
 ```bash
     # Compile and run
+    $ cd caixeiro4dummies
     $ make
 
 ```
