@@ -19,6 +19,11 @@ The evolution is made by exterminating the worst generated way and keeping the b
 
 ```
 ```bash
+    # Enter the directory
+    $ cd caixeiro4dummies
+
+```
+```bash
     # Compile and run
     $ make
 
