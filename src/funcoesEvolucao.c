@@ -1,8 +1,8 @@
 #include "funcoesEvolucao.h"
 
-int genAtual = -1;
+int genAtual = -1; // geracao atual 
 
-void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){
+void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){ // inicia a populacao na posicao inicial e sem pontos ou movimentos
     for(int i = 0; i < TamPop; i++){  // preenche o vetor com a populacao
         ind[i].pontos = 0;            // define valores padroes para os individuos
         ind[i].posi = LINHAS - 2;
@@ -13,7 +13,7 @@ void initpop(individuo *ind, int labirinto[LINHAS][COLUNAS]){
     }
 }
 
-void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo){
+void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo){ // quantifica o desempenho de cada caminho (individuo)
     genAtual++;
     fprintf(arquivo, "GERACAO: %d\n\n", genAtual); // printa em qual geracao esta
     int chegou = 1;
@@ -45,7 +45,7 @@ void avalia(individuo *ind, int labirinto[LINHAS][COLUNAS], FILE *arquivo){
     }
 }
 
-void exterminio(individuo *ind){
+void exterminio(individuo *ind){ // encontra e elimina os dois piores individuos
     int minfit1 = 0, minfit2 = 1;
 
     if(ind[0].pontos > ind[1].pontos){
@@ -75,7 +75,7 @@ void exterminio(individuo *ind){
     ind[TamPop-1] = vazio;
 }
 
-void elitismo(individuo *ind, int *maxfit1, int *maxfit2){
+void elitismo(individuo *ind, int *maxfit1, int *maxfit2){ // encontra os dois melhores individuos
     *maxfit1 = 0;
     *maxfit2 = 1;
 
@@ -95,7 +95,7 @@ void elitismo(individuo *ind, int *maxfit1, int *maxfit2){
         }
     }
 }
-
+// mistura os movimentos de dois individuos (metade de cada)
 individuo misturaGene(individuo indini, individuo indfim){
     individuo ind;                          
     for(int i = 0; i < TAM/2; i++)          //insere primeira metade no vetor
@@ -107,7 +107,7 @@ individuo misturaGene(individuo indini, individuo indfim){
     return ind;
 }
 
-void crossover(individuo *ind, int maxfit1, int maxfit2){
+void crossover(individuo *ind, int maxfit1, int maxfit2){ // mistura os movimentos dos individuos com os melhores, gerando novos individuos
     individuo novaPop[TamPop];
     int TamNovaPop = 0;
 
@@ -135,7 +135,7 @@ void crossover(individuo *ind, int maxfit1, int maxfit2){
         ind[i] = novaPop[i];
 }
 
-void mutacaoQuatro(individuo *novaPop){
+void mutacaoQuatro(individuo *novaPop){ // retira movimentos invalidos e troca por movimentos aleatorios
     for(int i = 2; i < TamPop; i++){
         for(int j = 0; j < TAM; j++){
             if(novaPop[i].caminho[j] == 4){
@@ -146,7 +146,7 @@ void mutacaoQuatro(individuo *novaPop){
     }
 }
 
-void mutacao(individuo *novaPop){
+void mutacao(individuo *novaPop){ // troca alguns movimentos por movimentos aleatorios
     for(int i = 2; i < TamPop; i++){
         int qntMutacoes = rand() % (TAM/4);
 
@@ -159,7 +159,7 @@ void mutacao(individuo *novaPop){
     }
 }
 
-void cruzamento(individuo *ind){
+void cruzamento(individuo *ind){ // gera os individuos para a nova geracao
     exterminio(ind);
     int maxfit1, maxfit2;
     elitismo(ind, &maxfit1, &maxfit2);
