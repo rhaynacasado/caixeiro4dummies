@@ -15,15 +15,17 @@ int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE  *
     ind->posj = COLUNAS - 2;
 
     for(int i = 0; i < TAM; i++){
-        int direcao = rand() % 8;
+        int direcao = rand() % 8; // randomiza a direcao
 
+        // chegou no destino
         if(ind->posi == 1 && ind->posj == 1){
             printLabirinto(labirinto, arquivo);
             return 0;
         }
 
+        // se ind esta em posicao valida
         if(labirinto[ind->posi][ind->posj] != 1){
-            if(direcao == 0 || direcao == 4){
+            if(direcao == 0 || direcao == 4){ // para cima
                 if(ind->posj < COLUNAS - 2){
                     labirinto[ind->posi][ind->posj] = 0;
                     ind->posj++;
@@ -34,7 +36,7 @@ int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE  *
                     ind->caminho[i] = 4;
                 }
             }
-            else if(direcao == 1 || direcao == 5){
+            else if(direcao == 1 || direcao == 5){ // para baixo
                 if(ind->posj > 1){
                     labirinto[ind->posi][ind->posj] = 0;
                     ind->posj--;
@@ -45,7 +47,7 @@ int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE  *
                     ind->caminho[i] = 4;
                 }
             }
-            else if(direcao == 2 || direcao == 6){
+            else if(direcao == 2 || direcao == 6){ // esquerda
                 if(ind->posi > 1){
                     labirinto[ind->posi][ind->posj] = 0;
                     ind->posi--;
@@ -56,7 +58,7 @@ int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE  *
                     ind->caminho[i] = 4;
                 }
             }
-            else if(direcao == 3 || direcao == 7){
+            else if(direcao == 3 || direcao == 7){ // direita
                 if(ind->posi < LINHAS - 2){
                     labirinto[ind->posi][ind->posj] = 0;
                     ind->posi++;
@@ -69,8 +71,11 @@ int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE  *
             }
         }
     }
+    // se saiu do loop, empacou em algum lugar
     printLabirinto(labirinto, arquivo);
     labirinto[ind->posi][ind->posj] = 0;
+
+    // retorna flag de nao chegou ao destino
     return 1;
 }
 
