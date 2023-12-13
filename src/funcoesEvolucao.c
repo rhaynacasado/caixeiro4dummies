@@ -134,10 +134,36 @@ void crossover(individuo *ind, int maxfit1, int maxfit2){
         ind[i] = novaPop[i];
 }
 
+void mutacaoQuatro(individuo *novaPop){
+    for(int i = 2; i < TamPop; i++){
+        for(int j = 0; j < TAM; j++){
+            if(novaPop[i].caminho[j] == 4){
+                int random = rand() % 4;
+                novaPop[i].caminho[j] = random; 
+            }
+        }
+    }
+}
+
+void mutacao(individuo *novaPop){
+    for(int i = 2; i < TamPop; i++){
+        int qntMutacoes = rand() % (TAM/4);
+
+        for(int j = 0; j < qntMutacoes; j++){
+            int movimento = rand() % 4;
+            int posicao = rand() % TAM;
+
+            novaPop[i].caminho[posicao] = movimento;
+        }
+    }
+}
+
 void cruzamento(individuo *ind){
     exterminio(ind);
     int maxfit1, maxfit2;
     elitismo(ind, &maxfit1, &maxfit2);
 
     crossover(ind, maxfit1, maxfit2);
+    mutacaoQuatro(ind);
+    mutacao(ind);
 }
