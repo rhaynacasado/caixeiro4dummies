@@ -1,6 +1,6 @@
 #include "funcoesEvolucao.h"
 
-#define GERACAO 30
+#define GERACAO 50
 
 int main(){
     FILE *arquivo = fopen("log.txt", "w");
