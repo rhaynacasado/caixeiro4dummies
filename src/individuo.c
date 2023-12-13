@@ -1,6 +1,14 @@
 #include "individuo.h"
 #include <time.h>
-
+/**
+ * @brief Desloca o individuo no labirinto, retorna um valor que denota 
+ * se chegou ou não ao destino
+ * 
+ * @param labirinto array de ints, representa o labirinto 
+ * @param ind array de individuos
+ * @param arquivo 
+ * @return int retorna 0 se chegou no destino, 1 se não
+ */
 int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE  *arquivo){
     ind->posi = LINHAS - 2;
     ind->posj = COLUNAS - 2;
