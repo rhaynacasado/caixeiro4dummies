@@ -5,9 +5,9 @@
  * @brief Desloca o individuo no labirinto, retorna um valor que denota 
  * se chegou ou não ao destino
  * 
- * @param labirinto array de ints, representa o labirinto 
+ * @param labirinto matriz de ints, representa o labirinto 
  * @param ind array de individuos
- * @param arquivo 
+ * @param arquivo usado para o print do labirinto 
  * @return int retorna 0 se chegou no destino, 1 se não
  */
 int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE  *arquivo){
@@ -79,6 +79,14 @@ int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE  *
     return 1;
 }
 
+/**
+ * @brief 
+ * 
+ * @param labirinto matriz de ints, representa o labirinto
+ * @param ind array de individuos
+ * @param arquivo usado no print do labirinto
+ * @return int 0 se chegou no destino, 1 se nao
+ */
 int moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE *arquivo){
     ind->posi = LINHAS - 2;
     ind->posj = COLUNAS - 2;
@@ -140,6 +148,12 @@ int moveIndividuo(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE *arquivo)
     return 1;
 }
 
+/**
+ * @brief printa todos os individuos e suas caracteristicas
+ * 
+ * @param ind array de individuos 
+ * @param arquivo log.txt para os outputs
+ */
 void printIndividuos(individuo *ind, FILE *arquivo){
     for(int i = 0; i < TamPop; i++)
         fprintf(arquivo, "individuo %d (%.0f pontos)\n", i, ind[i].pontos);
