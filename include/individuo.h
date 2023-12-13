@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 #define TamPop 10
-#define TAM 25
+#define TAM 27
 
 typedef struct{
     float pontos;
