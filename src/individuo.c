@@ -26,18 +26,18 @@ int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE  *
         // se ind esta em posicao valida
         if(labirinto[ind->posi][ind->posj] != 1){
             if(direcao == 0 || direcao == 4){ // para cima
-                if(ind->posj < COLUNAS - 2){
-                    labirinto[ind->posi][ind->posj] = 0;
-                    ind->posj++;
-                    labirinto[ind->posi][ind->posj] = 3;
-                    ind->caminho[i] = 0;
+                if(ind->posj < COLUNAS - 2){ // checa se nao bateu na parede de cima
+                    labirinto[ind->posi][ind->posj] = 0; // retira a marcacao do individuo na posicao anterior
+                    ind->posj++; // atualiza a posicao no individuo
+                    labirinto[ind->posi][ind->posj] = 3; // atualiza a posicao no labirinto
+                    ind->caminho[i] = 0; // marca o caminho tomado
                 }
                 else{
-                    ind->caminho[i] = 4;
+                    ind->caminho[i] = 4; // default de posicao invalida
                 }
             }
             else if(direcao == 1 || direcao == 5){ // para baixo
-                if(ind->posj > 1){
+                if(ind->posj > 1){ // checa se nao bateu na parede de baixo
                     labirinto[ind->posi][ind->posj] = 0;
                     ind->posj--;
                     labirinto[ind->posi][ind->posj] = 3;
@@ -48,7 +48,7 @@ int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE  *
                 }
             }
             else if(direcao == 2 || direcao == 6){ // esquerda
-                if(ind->posi > 1){
+                if(ind->posi > 1){ // checa se nao bateu na parede esquerda
                     labirinto[ind->posi][ind->posj] = 0;
                     ind->posi--;
                     labirinto[ind->posi][ind->posj] = 3;
@@ -59,8 +59,8 @@ int moveIndividuoInicial(int labirinto[LINHAS][COLUNAS], individuo *ind, FILE  *
                 }
             }
             else if(direcao == 3 || direcao == 7){ // direita
-                if(ind->posi < LINHAS - 2){
-                    labirinto[ind->posi][ind->posj] = 0;
+                if(ind->posi < LINHAS - 2){ // checa se nao bateu na parede direita 
+                    labirinto[ind->posi][ind->posj] = 0; 
                     ind->posi++;
                     labirinto[ind->posi][ind->posj] = 3;
                     ind->caminho[i] = 3;
