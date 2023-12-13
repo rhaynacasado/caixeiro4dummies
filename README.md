@@ -1,6 +1,6 @@
 <h1 align="center">
     <!-- <img src = "./imgs/eggerlandTitle.png"/> -->
-    <p> An Evolutionary Systems programming Project! 👾 </p>
+    <p> An Evolutionary Systems programming Project! 📦✈️❓ </p>
 </h1>
 
 ## 🚨 About
