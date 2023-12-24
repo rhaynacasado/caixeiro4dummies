@@ -10,6 +10,9 @@ The path is evaluated by summing points as close as it gets to the goal and subt
 
 The evolution is made by exterminating the worst generated way and keeping the best ones. Then the chosen best are crossovered with the other generated ways. Finally, the path suffer a mutation to improve the system.
 
+## Presentation (in PT-BR)
+
+[![alt text](https://youtu.be/dB-52WtzA_4)](https://youtu.be/dB-52WtzA_4 "apresentacao")
 
 ## 🕹️ How to run
 
